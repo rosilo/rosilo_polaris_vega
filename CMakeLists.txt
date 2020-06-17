@@ -112,19 +112,19 @@ include_directories(
     )
 
 ## Declare a cpp library
-add_library(rosilo_polaris_vega_interface
+add_library(rosilo_polaris_vega
     src/rosilo_polaris_vega_interface.cpp
     )
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-add_dependencies(rosilo_polaris_vega_interface
+add_dependencies(rosilo_polaris_vega
     ${${PROJECT_NAME}_EXPORTED_TARGETS}
     ${catkin_EXPORTED_TARGETS}
     )
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(rosilo_polaris_vega_interface
+target_link_libraries(rosilo_polaris_vega
     ${catkin_LIBRARIES}
     )
 
@@ -133,7 +133,7 @@ add_executable(rosilo_polaris_vega_interface_example src/rosilo_polaris_vega_int
 
 target_link_libraries(rosilo_polaris_vega_interface_example
     ${catkin_LIBRARIES}
-    rosilo_polaris_vega_interface
+    rosilo_polaris_vega
     dqrobotics
     )
 
