@@ -54,7 +54,17 @@ int main(int argc, char** argv)
     for(int i=0;i<10;i++)
     {
         if(polaris_vega_interface->is_initialized())
-            polaris_vega_interface->get_tool_pose(1);
+        {
+            if(polaris_vega_interface->get_tool_status(1) != rosilo::PolarisToolStatus::VALID)
+            {
+                std::cout << "Tool status: " << rosilo::to_string(polaris_vega_interface->get_tool_status(1)) << std::endl;
+            }
+            else
+            {
+                std::cout << "Pose: " << polaris_vega_interface->get_tool_pose(1) << std::endl;
+            }
+
+        }
         std::this_thread::sleep_for(std::chrono::seconds(1));
         ros::spinOnce();
     }

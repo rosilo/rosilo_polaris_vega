@@ -32,7 +32,7 @@ PolarisVegaInterface::PolarisVegaInterface(ros::NodeHandle& node_handle):
     node_handle_(node_handle),
     initialized_(false)
 {
-    subscriber_tools_getpose_ = node_handle.subscribe("/polaris_vega_interface/tools/getpose", 1, &PolarisVegaInterface::tools_pose_callback, this);
+    subscriber_tools_getpose_ = node_handle.subscribe("/rosilo_polaris_vega/tools/getpose", 1, &PolarisVegaInterface::tools_pose_callback, this);
 }
 
 void PolarisVegaInterface::tools_pose_callback(const rosilo_polaris_vega::ToolsPoseArray::ConstPtr &msg)
@@ -98,6 +98,20 @@ std::vector<int> PolarisVegaInterface::get_port_handle_ids() const
 bool PolarisVegaInterface::is_initialized() const
 {
     return initialized_;
+}
+
+std::string to_string(const PolarisToolStatus &status)
+{
+    switch(status)
+    {
+    case rosilo::PolarisToolStatus::VALID:
+        return std::string("Valid");
+    case rosilo::PolarisToolStatus::MISSING:
+        return std::string("Missing");
+    case rosilo::PolarisToolStatus::DISABLED:
+        return std::string("Disabled");
+    }
+    throw std::runtime_error("Unknown status");
 }
 
 }

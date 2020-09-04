@@ -43,6 +43,8 @@ enum class PolarisToolStatus
     DISABLED = 4
 };
 
+std::string to_string(const PolarisToolStatus& status);
+
 class PolarisVegaInterface
 {
 private:
