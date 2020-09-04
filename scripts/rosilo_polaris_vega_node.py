@@ -34,7 +34,7 @@ import yaml
 # ROS
 import roslib
 
-roslib.load_manifest('polaris_vega_interface')
+roslib.load_manifest('rosilo_polaris_vega')
 import rospy
 import rospkg
 
@@ -42,7 +42,7 @@ import rospkg
 from geometry_msgs.msg import Pose as rosmsg_Pose
 from geometry_msgs.msg import Quaternion as rosmsg_Quaternion
 from geometry_msgs.msg import Point as rosmsg_Point
-from polaris_vega_interface.msg import ToolsPoseArray as rosmsg_ToolsPoseArray
+from rosilo_polaris_vega.msg import ToolsPoseArray as rosmsg_ToolsPoseArray
 
 # Polaris driver
 from polaris_vega_api import PolarisDriver, Tool
@@ -72,12 +72,12 @@ class PolarisDriverROS:
 
         # Get package configuration file
         rospack = rospkg.RosPack()
-        polaris_vega_interface_package_path = rospack.get_path('polaris_vega_interface')
-        yaml_file = open(polaris_vega_interface_package_path + "/cfg/config.yml")
+        rosilo_polaris_vega_package_path = rospack.get_path('rosilo_polaris_vega')
+        yaml_file = open(rosilo_polaris_vega_package_path + "/cfg/config.yml")
         parsed_yaml_file = yaml.load(yaml_file, Loader=yaml.FullLoader)
 
         # Initialize passive tools publisher
-        self.pub_tools_pose = rospy.Publisher("/polaris_vega_interface/tools/getpose",
+        self.pub_tools_pose = rospy.Publisher("/rosilo_polaris_vega/tools/getpose",
                                               rosmsg_ToolsPoseArray,
                                               queue_size=1)
 

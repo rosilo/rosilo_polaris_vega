@@ -6,6 +6,4 @@ polaris_vega:
 
 passive_tools:
   -
-    path: '/home/nml/Downloads/8700339.rom'
-  -
     path: '/home/nml/Downloads/8700449.rom'
